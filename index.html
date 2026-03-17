@@ -1,137 +1,533 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Dimension</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Dimension | FIRST Chesapeake</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #000;
-  color: #fff;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* NAVBAR */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 60px;
-  position: fixed;
-  width: 100%;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
 
-.nav a {
-  color: #aaa;
-  text-decoration: none;
-  margin-left: 25px;
-  font-size: 14px;
-}
+    h1, h2, h3, .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+    }
 
-.nav a:hover {
-  color: #fff;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.hero h1 {
-  font-size: 64px;
-  font-weight: 600;
-  margin: 0;
-}
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #000;
+      border-bottom: 1px solid #1f1f1f;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
 
-.hero p {
-  font-size: 20px;
-  color: #888;
-  margin-top: 15px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
 
-/* BUTTON */
-.btn {
-  margin-top: 30px;
-  padding: 14px 28px;
-  border-radius: 999px;
-  background: #fff;
-  color: #000;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
+    .brand img {
+      width: 62px;
+      height: 62px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
 
-.btn:hover {
-  background: #ccc;
-}
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
 
-/* IMAGE SECTION */
-.section {
-  padding: 100px 20px;
-  text-align: center;
-}
+    .brand-name {
+      font-size: 1.9rem;
+      font-weight: 700;
+    }
 
-.section img {
-  width: 85%;
-  max-width: 1200px;
-  border-radius: 20px;
-  margin-top: 40px;
-}
+    .brand-sub {
+      font-size: 1.1rem;
+      color: #d9d9d9;
+      margin-top: 4px;
+    }
 
-/* FEATURE TEXT */
-.big-text {
-  font-size: 42px;
-  font-weight: 600;
-}
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      font-size: 1.15rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-.small-text {
-  color: #aaa;
-  margin-top: 10px;
-}
-</style>
+    .nav-links a:hover {
+      opacity: 0.75;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.45)),
+                  url("images/rebuilt-banner.jpg") center/cover no-repeat;
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: #ededed;
+      max-width: 780px;
+      margin: 0 auto 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 999px;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    .section {
+      padding: 80px 24px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      max-width: 780px;
+      margin: 0 auto 44px;
+      text-align: center;
+      color: #d4d4d4;
+      font-size: 1.08rem;
+    }
+
+    .about-banner {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
+                  url("images/about-earth.jpg") center/cover no-repeat;
+      min-height: 55vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .about-banner h2 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      margin-bottom: 10px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 10px;
+    }
+
+    .card {
+      background: #0a0a0a;
+      border: 1px solid #1d1d1d;
+      border-radius: 20px;
+      padding: 34px;
+    }
+
+    .card h3 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .card p {
+      font-size: 1.08rem;
+      color: #f0f0f0;
+    }
+
+    .outreach-hero {
+      background: linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.45)),
+                  url("images/outreach.jpg") center/cover no-repeat;
+      min-height: 42vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .outreach-hero h2,
+    .sponsor-hero h2 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+    }
+
+    .text-block {
+      max-width: 980px;
+      margin: 0 auto;
+      font-size: 1.18rem;
+      color: #f0f0f0;
+    }
+
+    .text-block p + p {
+      margin-top: 20px;
+    }
+
+    .contact-box {
+      margin-top: 48px;
+      text-align: center;
+      padding: 36px;
+      border: 1px solid #1f1f1f;
+      border-radius: 20px;
+      background: #080808;
+    }
+
+    .contact-box h3 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin-bottom: 14px;
+    }
+
+    .contact-box p {
+      color: #d3d3d3;
+      margin-bottom: 18px;
+    }
+
+    .social-section {
+      background: #f2f2f2;
+      color: #000;
+    }
+
+    .social-grid {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 32px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .social-item {
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    }
+
+    .social-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sponsor-hero {
+      background: linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.52)),
+                  url("images/sponsor-banner.jpg") center/cover no-repeat;
+      min-height: 42vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .sponsor-logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0 22px;
+    }
+
+    .sponsor-logo {
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .sponsor-copy {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.15rem;
+      color: #ececec;
+    }
+
+    .footer {
+      background: #050505;
+      border-top: 1px solid #1f1f1f;
+      padding: 26px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer .brand img {
+      width: 52px;
+      height: 52px;
+    }
+
+    .footer .brand-name {
+      font-size: 1.5rem;
+    }
+
+    .footer .brand-sub {
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        gap: 18px;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand-name {
+        font-size: 1.5rem;
+      }
+
+      .brand-sub {
+        font-size: 0.95rem;
+      }
+
+      .social-item {
+        width: 96px;
+        height: 96px;
+        border-radius: 20px;
+      }
+
+      .card {
+        padding: 26px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header class="navbar">
+    <div class="brand">
+      <img src="images/apex-logo.png" alt="Apex Dimension logo" />
+      <div class="brand-text">
+        <span class="brand-name">Apex Dimension</span>
+        <span class="brand-sub">FIRST Chesapeake</span>
+      </div>
+    </div>
 
-<!-- NAV -->
-<div class="nav">
-  <div><b>Apex Dimension</b></div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Robot</a>
-    <a href="#">Team</a>
-    <a href="#">Sponsors</a>
-  </div>
-</div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#outreach">Outreach</a>
+      <a href="#sponsor">Sponsor</a>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Engineered to Win</h1>
-  <p>FRC Team 11211 • Apex Dimension</p>
-  <a href="#" class="btn">Explore</a>
-</div>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Making STEM accessible. Inspiring the next generation.</h1>
+        <p>
+          We are Apex Dimension, a FIRST Chesapeake robotics team focused on building robots,
+          opening doors, and helping more students see a future for themselves in STEM.
+        </p>
+        <a class="btn" href="#outreach">See Our Outreach</a>
+      </div>
+    </section>
 
-<!-- ROBOT SECTION -->
-<div class="section">
-  <div class="big-text">Precision. Speed. Control.</div>
-  <div class="small-text">Built for high-performance competition.</div>
-  <img src="https://via.placeholder.com/1200x600">
-</div>
+    <section class="section social-section">
+      <div class="container">
+        <h2 class="section-title">APEX SOCIAL</h2>
+        <p class="section-subtitle">
+          Follow our journey, events, outreach, and build season updates across our social platforms.
+        </p>
 
-<!-- TEAM SECTION -->
-<div class="section">
-  <div class="big-text">One Team. One Vision.</div>
-  <div class="small-text">Driven by innovation and engineering.</div>
-  <img src="https://via.placeholder.com/1200x600">
-</div>
+        <div class="social-grid">
+          <a class="social-item" href="#">
+            <img src="images/instagram.png" alt="Instagram" />
+          </a>
+          <a class="social-item" href="#">
+            <img src="images/youtube.png" alt="YouTube" />
+          </a>
+          <a class="social-item" href="#">
+            <img src="images/tiktok.png" alt="TikTok" />
+          </a>
+          <a class="social-item" href="#">
+            <img src="images/facebook.png" alt="Facebook" />
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <section class="about-banner" id="about">
+      <div>
+        <h2>About APEX</h2>
+        <p>Making STEM accessible. Inspiring the next generation.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div class="card">
+          <h3>Who are we?</h3>
+          <p>
+            We are a team of students who believe STEM should not feel distant or out of reach.
+            Through robotics, we challenge ourselves to grow as engineers, leaders, and problem-solvers.
+            Beyond building robots, we want to bring STEM into our community and help younger students see
+            that they belong in this field too.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Mission Statement</h3>
+          <p>
+            Our mission is to break barriers in STEM and make sure every student, regardless of background,
+            prior access, or financial situation, has the opportunity to learn, create, and innovate through robotics.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="outreach-hero" id="outreach">
+      <h2>Outreach</h2>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="text-block">
+          <p>
+            We have spent a lot of time trying to share what we love about robotics with others in our community.
+            One of the most meaningful things we have done is bringing our robot to elementary school students at local
+            math and English academies, as well as Brookhaven Elementary School. Seeing their reactions — how excited
+            they get when they first see the robot move or try things themselves — reminds us why we started in the first place.
+          </p>
+          <p>
+            We also connected with FTC and VEX teams at Walter Johnson High School, where we shared our experiences and learned
+            from each other. It was not just about showing our robot, but about building a stronger robotics community and helping
+            others grow alongside us.
+          </p>
+          <p>
+            Outside of competitions, we try to support students more directly by offering low-cost or free tutoring for those who need it.
+            We know not everyone has the same access to resources, so we want to do our part to make STEM feel more reachable and less intimidating.
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <h3>Contact for Visiting</h3>
+          <p>Email us to schedule a school demo, team visit, collaboration, or outreach event.</p>
+          <a class="btn" href="mailto:yourteamemail@example.com">Email Apex Dimension</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sponsor-hero" id="sponsor">
+      <h2>Sponsor</h2>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="sponsor-logo-wrap">
+          <img class="sponsor-logo" src="images/argosy-foundation.png" alt="Argosy Foundation" />
+        </div>
+        <div class="sponsor-copy">
+          <p>
+            We are grateful for the support of our sponsors, whose generosity helps us build, compete,
+            and expand access to STEM through outreach. Their support makes it possible for us to create opportunities
+            for students in our community and continue growing as a team.
+          </p>
+          <br />
+          <a class="btn" href="mailto:yourteamemail@example.com?subject=Sponsoring%20Apex%20Dimension">Support Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="brand">
+        <img src="images/apex-logo.png" alt="Apex Dimension logo" />
+        <div class="brand-text">
+          <span class="brand-name">Apex Dimension</span>
+          <span class="brand-sub">FIRST Chesapeake</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#outreach">Outreach</a>
+        <a href="#sponsor">Sponsor</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
