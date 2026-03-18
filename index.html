@@ -4,7 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apex Dimension | FIRST Chesapeake</title>
+  <meta
+    name="description"
+    content="Apex Dimension is a FIRST Chesapeake robotics team dedicated to making STEM accessible and inspiring the next generation through robotics, outreach, and innovation."
+  />
   <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0b0b0d;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #c9c9ce;
+      --muted-2: #9b9ba3;
+      --accent: #7fd3ff;
+      --accent-2: #b8ecff;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max-width: 1240px;
+      --nav-height: 82px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,14 +38,18 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #000;
-      color: #fff;
-      line-height: 1.6;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(35, 111, 163, 0.22), transparent 28%),
+        linear-gradient(180deg, #030303 0%, #07070a 35%, #040404 100%);
+      color: var(--text);
+      line-height: 1.55;
+      overflow-x: hidden;
     }
 
-    h1, h2, h3, .brand-name {
+    h1, h2, h3, h4, .serif {
       font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: -0.02em;
     }
 
     a {
@@ -32,21 +58,77 @@
     }
 
     img {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+      border: none;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.92rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 6vw, 5.2rem);
+      line-height: 0.96;
+      margin-bottom: 18px;
+    }
+
+    .section-subtitle {
+      max-width: 760px;
+      font-size: 1.1rem;
+      color: var(--muted);
     }
 
     .navbar {
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 14px;
+      left: 0;
+      width: 100%;
       z-index: 1000;
-      background: #000;
-      border-bottom: 1px solid #1f1f1f;
-      padding: 14px 28px;
+      transition: all 0.35s ease;
+      padding: 0 16px;
+    }
+
+    .navbar-inner {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      height: var(--nav-height);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+      padding: 0 22px;
+      background: rgba(10, 10, 14, 0.62);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+    }
+
+    .navbar.scrolled .navbar-inner {
+      background: rgba(7, 7, 9, 0.84);
+      border-color: rgba(255,255,255,0.11);
     }
 
     .brand {
@@ -57,455 +139,1005 @@
     }
 
     .brand img {
-      width: 62px;
-      height: 62px;
-      object-fit: contain;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
     }
 
     .brand-text {
       display: flex;
       flex-direction: column;
-      line-height: 1.1;
+      line-height: 1.05;
     }
 
     .brand-name {
-      font-size: 1.9rem;
+      font-size: 1.35rem;
       font-weight: 700;
     }
 
     .brand-sub {
-      font-size: 1.1rem;
-      color: #d9d9d9;
+      color: var(--muted);
+      font-size: 0.92rem;
       margin-top: 4px;
     }
 
     .nav-links {
       display: flex;
-      gap: 34px;
-      font-size: 1.15rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      align-items: center;
+      gap: 26px;
+      font-size: 0.98rem;
+      color: #e9e9ee;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: opacity 0.25s ease;
     }
 
     .nav-links a:hover {
       opacity: 0.75;
     }
 
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #000;
+      font-weight: 700;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.45)),
-                  url("images/rebuilt-banner.jpg") center/cover no-repeat;
-      min-height: 78vh;
+      min-height: 100vh;
+      position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px;
+      overflow: hidden;
+      padding: 140px 0 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.6)),
+        radial-gradient(circle at 50% 20%, rgba(127,211,255,0.18), transparent 28%),
+        url("images/hero-robot.jpg") center/cover no-repeat;
+      transform: scale(1.04);
+      will-change: transform;
+    }
+
+    .hero-overlay-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0));
+      opacity: 0.22;
+      pointer-events: none;
     }
 
     .hero-content {
-      max-width: 900px;
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      color: #eef9ff;
+      font-size: 0.92rem;
+      margin-bottom: 24px;
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      margin-bottom: 18px;
+      font-size: clamp(3.5rem, 8vw, 7.2rem);
+      line-height: 0.92;
+      margin-bottom: 22px;
+      max-width: 960px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
 
     .hero p {
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      color: #ededed;
-      max-width: 780px;
-      margin: 0 auto 28px;
+      max-width: 760px;
+      font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+      color: #edf1f4;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 44px;
     }
 
     .btn {
-      display: inline-block;
-      background: #fff;
-      color: #000;
-      padding: 14px 28px;
-      font-size: 1rem;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 24px;
       border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease;
     }
 
     .btn:hover {
-      opacity: 0.92;
+      transform: translateY(-2px);
     }
 
-    .section {
-      padding: 80px 24px;
+    .btn-primary {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 12px 30px rgba(255,255,255,0.12);
     }
 
-    .container {
-      max-width: 1150px;
-      margin: 0 auto;
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(12px);
     }
 
-    .section-title {
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      margin-bottom: 18px;
-      text-align: center;
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 1100px;
     }
 
-    .section-subtitle {
-      max-width: 780px;
-      margin: 0 auto 44px;
-      text-align: center;
-      color: #d4d4d4;
-      font-size: 1.08rem;
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
     }
 
-    .about-banner {
-      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
-                  url("images/about-earth.jpg") center/cover no-repeat;
-      min-height: 55vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px 20px;
-    }
-
-    .about-banner h2 {
-      font-size: clamp(2.8rem, 7vw, 5rem);
+    .stat-value {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1;
       margin-bottom: 10px;
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      margin-top: 10px;
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.98rem;
     }
 
-    .card {
-      background: #0a0a0a;
-      border: 1px solid #1d1d1d;
-      border-radius: 20px;
+    .floating-card {
+      position: absolute;
+      right: 6%;
+      bottom: 9%;
+      width: min(360px, 90vw);
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(8, 10, 14, 0.62);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.42);
+      z-index: 3;
+    }
+
+    .floating-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .floating-card p {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .spotlight {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(127,211,255,0.16), transparent 68%);
+      filter: blur(20px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .spotlight-1 {
+      top: 8%;
+      left: -120px;
+    }
+
+    .spotlight-2 {
+      right: -140px;
+      bottom: 8%;
+    }
+
+    .glass-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      margin-top: 48px;
+      align-items: stretch;
+    }
+
+    .about-copy,
+    .about-image-card,
+    .mission-card,
+    .quote-card,
+    .outreach-card,
+    .sponsor-card,
+    .contact-card,
+    .social-card {
+      overflow: hidden;
+    }
+
+    .about-copy,
+    .mission-card,
+    .quote-card,
+    .outreach-card,
+    .sponsor-card,
+    .contact-card,
+    .social-card {
       padding: 34px;
     }
 
-    .card h3 {
+    .about-copy p,
+    .mission-card p,
+    .quote-card p,
+    .outreach-card p,
+    .sponsor-card p,
+    .contact-card p,
+    .social-card p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .about-copy h3,
+    .mission-card h3,
+    .quote-card h3,
+    .outreach-card h3,
+    .sponsor-card h3,
+    .contact-card h3,
+    .social-card h3 {
       font-size: 2rem;
       margin-bottom: 16px;
     }
 
-    .card p {
-      font-size: 1.08rem;
-      color: #f0f0f0;
+    .about-image-card {
+      min-height: 560px;
+      position: relative;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.4)),
+        url("images/team-photo.jpg") center/cover no-repeat;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
     }
 
-    .outreach-hero {
-      background: linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.45)),
-                  url("images/outreach.jpg") center/cover no-repeat;
-      min-height: 42vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .about-image-tag {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.42);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      max-width: 280px;
+    }
+
+    .about-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .split-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .feature-image {
+      min-height: 620px;
+      border-radius: var(--radius-xl);
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.5)),
+        url("images/outreach-main.jpg") center/cover no-repeat;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .feature-item {
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-item p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .stats-band {
+      padding-top: 60px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .big-stat {
+      padding: 34px 28px;
       text-align: center;
-      padding: 30px 20px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.11);
+      box-shadow: var(--shadow);
     }
 
-    .outreach-hero h2,
-    .sponsor-hero h2 {
-      font-size: clamp(2.8rem, 7vw, 5rem);
+    .big-stat .number {
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
+      font-weight: 800;
+      margin-bottom: 10px;
     }
 
-    .text-block {
-      max-width: 980px;
-      margin: 0 auto;
-      font-size: 1.18rem;
-      color: #f0f0f0;
-    }
-
-    .text-block p + p {
-      margin-top: 20px;
-    }
-
-    .contact-box {
-      margin-top: 48px;
-      text-align: center;
-      padding: 36px;
-      border: 1px solid #1f1f1f;
-      border-radius: 20px;
-      background: #080808;
-    }
-
-    .contact-box h3 {
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      margin-bottom: 14px;
-    }
-
-    .contact-box p {
-      color: #d3d3d3;
-      margin-bottom: 18px;
-    }
-
-    .social-section {
-      background: #f2f2f2;
-      color: #000;
+    .big-stat .label {
+      color: var(--muted);
+      font-size: 1rem;
     }
 
     .social-grid {
-      margin-top: 36px;
       display: grid;
-      grid-template-columns: repeat(4, minmax(120px, 1fr));
-      gap: 32px;
-      align-items: center;
-      justify-items: center;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 32px;
     }
 
-    .social-item {
-      width: 120px;
-      height: 120px;
-      border-radius: 28px;
-      background: #fff;
+    .social-tile {
+      padding: 22px;
+      min-height: 200px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .social-tile:hover {
+      transform: translateY(-6px);
+      border-color: rgba(127,211,255,0.34);
+    }
+
+    .social-icon-wrap {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+      margin-bottom: 22px;
     }
 
-    .social-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .social-icon-wrap img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
     }
 
-    .sponsor-hero {
-      background: linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.52)),
-                  url("images/sponsor-banner.jpg") center/cover no-repeat;
-      min-height: 42vh;
+    .social-tile h4 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .social-tile p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .sponsor-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      margin-top: 42px;
+      align-items: stretch;
+    }
+
+    .sponsor-logo-block {
+      min-height: 420px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 30px 20px;
+      padding: 34px;
     }
 
-    .sponsor-logo-wrap {
-      display: flex;
-      justify-content: center;
-      margin: 40px 0 22px;
-    }
-
-    .sponsor-logo {
-      max-width: 320px;
+    .sponsor-logo-block img {
+      max-width: 300px;
       width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,0.28));
     }
 
-    .sponsor-copy {
-      max-width: 760px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 1.15rem;
-      color: #ececec;
+    .sponsor-points {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .sponsor-point {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 44px;
+    }
+
+    .contact-card .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .contact-meta {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .contact-meta div {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
     }
 
     .footer {
-      background: #050505;
-      border-top: 1px solid #1f1f1f;
-      padding: 26px 24px;
+      padding: 30px 0 44px;
     }
 
     .footer-inner {
-      max-width: 1150px;
+      width: min(var(--max-width), calc(100% - 40px));
       margin: 0 auto;
+      padding: 24px 28px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 22px;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
-    .footer .brand img {
-      width: 52px;
-      height: 52px;
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .footer .brand-name {
-      font-size: 1.5rem;
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .footer .brand-sub {
-      font-size: 0.95rem;
+    .fade-in {
+      animation: fadeInUp 1s ease forwards;
     }
 
-    @media (max-width: 900px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-stats,
+      .stats-grid,
+      .social-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .nav-links {
-        justify-content: flex-start;
-        gap: 18px;
-      }
-
-      .split {
+      .about-grid,
+      .split-feature,
+      .sponsor-layout,
+      .contact-wrap,
+      .about-bottom {
         grid-template-columns: 1fr;
       }
 
-      .social-grid {
-        grid-template-columns: repeat(2, minmax(120px, 1fr));
+      .floating-card {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 24px;
+        width: 100%;
+      }
+
+      .feature-image,
+      .about-image-card {
+        min-height: 420px;
       }
     }
 
-    @media (max-width: 560px) {
-      .brand-name {
-        font-size: 1.5rem;
+    @media (max-width: 860px) {
+      .navbar-inner {
+        height: auto;
+        padding: 16px 18px;
+        align-items: flex-start;
+        gap: 16px;
+        flex-direction: column;
       }
 
-      .brand-sub {
-        font-size: 0.95rem;
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
       }
 
-      .social-item {
-        width: 96px;
-        height: 96px;
-        border-radius: 20px;
+      .hero {
+        min-height: auto;
+        padding-top: 180px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 24px));
       }
 
-      .card {
+      .section {
+        padding: 88px 0;
+      }
+
+      .hero-stats,
+      .stats-grid,
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions,
+      .contact-card .contact-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn,
+      .nav-cta {
+        width: 100%;
+      }
+
+      .about-copy,
+      .mission-card,
+      .quote-card,
+      .outreach-card,
+      .sponsor-card,
+      .contact-card,
+      .social-card {
         padding: 26px;
+      }
+
+      .brand-name {
+        font-size: 1.15rem;
       }
     }
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="brand">
-      <img src="images/apex-logo.png" alt="Apex Dimension logo" />
-      <div class="brand-text">
-        <span class="brand-name">Apex Dimension</span>
-        <span class="brand-sub">FIRST Chesapeake</span>
-      </div>
-    </div>
+  <header class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="#home" class="brand">
+        <img src="images/apex-logo.png" alt="Apex Dimension logo" />
+        <div class="brand-text">
+          <span class="brand-name serif">Apex Dimension</span>
+          <span class="brand-sub">FIRST Chesapeake • Team 11211</span>
+        </div>
+      </a>
 
-    <nav class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#outreach">Outreach</a>
-      <a href="#sponsor">Sponsor</a>
-    </nav>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#impact">Impact</a>
+        <a href="#outreach">Outreach</a>
+        <a href="#social">Social</a>
+        <a href="#sponsor">Sponsor</a>
+        <a class="nav-cta" href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <div class="hero-content">
-        <h1>Making STEM accessible. Inspiring the next generation.</h1>
-        <p>
-          We are Apex Dimension, a FIRST Chesapeake robotics team focused on building robots,
-          opening doors, and helping more students see a future for themselves in STEM.
-        </p>
-        <a class="btn" href="#outreach">See Our Outreach</a>
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay-grid"></div>
+      <div class="spotlight spotlight-1"></div>
+      <div class="spotlight spotlight-2"></div>
+
+      <div class="container">
+        <div class="hero-content fade-in">
+          <div class="hero-kicker">
+            <span>⚙</span>
+            <span>Engineering access. Building opportunity.</span>
+          </div>
+
+          <h1 class="serif">Making STEM feel possible for every student.</h1>
+
+          <p>
+            We are Apex Dimension, a FIRST Chesapeake robotics team using engineering,
+            outreach, and mentorship to open doors for the next generation of innovators.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#outreach">Explore Our Outreach</a>
+            <a class="btn btn-secondary" href="#sponsor">Support the Team</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <div class="stat-value counter" data-target="150">0</div>
+              <div class="stat-label">Students Reached</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value counter" data-target="3">0</div>
+              <div class="stat-label">School & Community Visits</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value counter" data-target="20">0</div>
+              <div class="stat-label">Students Mentored</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value counter" data-target="10">0</div>
+              <div class="stat-label">Hours of Tutoring</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-card reveal">
+          <h3 class="serif">More than a robot team.</h3>
+          <p>
+            We believe robotics is not just about competition. It is a platform to teach,
+            inspire, and help more students see themselves in STEM.
+          </p>
+        </div>
       </div>
     </section>
 
-    <section class="section social-section">
+    <section class="section" id="about">
       <div class="container">
-        <h2 class="section-title">APEX SOCIAL</h2>
-        <p class="section-subtitle">
-          Follow our journey, events, outreach, and build season updates across our social platforms.
+        <span class="eyebrow reveal">About Apex</span>
+        <h2 class="section-title reveal serif">Precision, purpose, and community.</h2>
+        <p class="section-subtitle reveal">
+          Apex Dimension was built around a simple idea: talent is everywhere, but access is not.
+          Through FIRST Robotics, we create opportunities for students to build technical skills,
+          confidence, and a real sense of belonging in engineering.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-copy glass-panel reveal">
+            <h3 class="serif">Who we are</h3>
+            <p>
+              We are a student-led robotics team focused on design, programming, manufacturing,
+              teamwork, and outreach. Every season, we push ourselves to create competitive robots
+              while also expanding access to STEM for younger students and underserved communities.
+            </p>
+            <br />
+            <p>
+              Our team values curiosity, resilience, and impact. We do not just want to build
+              better machines. We want to build a stronger future for the students around us.
+            </p>
+          </div>
+
+          <div class="about-image-card reveal">
+            <div class="about-image-tag">
+              <strong class="serif">Apex Dimension</strong><br />
+              Building robots. Expanding access. Inspiring what comes next.
+            </div>
+          </div>
+        </div>
+
+        <div class="about-bottom">
+          <div class="mission-card glass-panel reveal">
+            <h3 class="serif">Mission</h3>
+            <p>
+              Our mission is to make STEM accessible regardless of race, family background,
+              prior exposure, or financial situation, and to create meaningful pathways for
+              students to learn, build, and lead through robotics.
+            </p>
+          </div>
+
+          <div class="quote-card glass-panel reveal">
+            <h3 class="serif">What drives us</h3>
+            <p>
+              We are not just building robots — we are building access, confidence, and opportunity.
+              Every outreach demo, every conversation, and every student we inspire matters.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section stats-band" id="impact">
+      <div class="container">
+        <span class="eyebrow reveal">Impact</span>
+        <h2 class="section-title reveal serif">Measured in people, not just parts.</h2>
+        <p class="section-subtitle reveal">
+          Competitive engineering matters, but our proudest work is the impact we make beyond the field.
+        </p>
+
+        <div class="stats-grid">
+          <div class="big-stat reveal">
+            <div class="number counter" data-target="150">0</div>
+            <div class="label">Students reached through demos and events</div>
+          </div>
+          <div class="big-stat reveal">
+            <div class="number counter" data-target="3">0</div>
+            <div class="label">Community and school outreach locations</div>
+          </div>
+          <div class="big-stat reveal">
+            <div class="number counter" data-target="20">0</div>
+            <div class="label">Students supported through mentoring</div>
+          </div>
+          <div class="big-stat reveal">
+            <div class="number counter" data-target="10">0</div>
+            <div class="label">Hours of low-cost or free tutoring</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="outreach">
+      <div class="container">
+        <span class="eyebrow reveal">Outreach</span>
+        <h2 class="section-title reveal serif">STEM becomes real when students can touch it.</h2>
+        <p class="section-subtitle reveal">
+          We bring robotics into our community through live demonstrations, mentorship, and direct student support.
+        </p>
+
+        <div class="split-feature">
+          <div class="feature-image reveal"></div>
+
+          <div class="outreach-card glass-panel reveal">
+            <h3 class="serif">What we do</h3>
+            <p>
+              We introduce students to robotics in a way that feels exciting, interactive, and personal.
+              Our outreach is designed to make STEM feel less intimidating and more possible.
+            </p>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <h4 class="serif">Elementary school robot demos</h4>
+                <p>
+                  We brought our robot to local math and English academies and to Brookhaven Elementary School,
+                  giving younger students a hands-on first look at robotics in action.
+                </p>
+              </div>
+
+              <div class="feature-item">
+                <h4 class="serif">FTC and VEX collaboration</h4>
+                <p>
+                  We connected with FTC and VEX teams at Walter Johnson High School to share ideas,
+                  strengthen local robotics pathways, and support a more connected STEM community.
+                </p>
+              </div>
+
+              <div class="feature-item">
+                <h4 class="serif">Tutoring and direct support</h4>
+                <p>
+                  We offer low-cost or free tutoring to students who need extra support, because access
+                  to learning should never depend only on resources.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="social">
+      <div class="container">
+        <span class="eyebrow reveal">Social</span>
+        <h2 class="section-title reveal serif">Follow the build. Watch the mission grow.</h2>
+        <p class="section-subtitle reveal">
+          Share our season, outreach events, behind-the-scenes builds, and team milestones across social platforms.
         </p>
 
         <div class="social-grid">
-          <a class="social-item" href="#">
-            <img src="images/instagram.png" alt="Instagram" />
+          <a class="social-tile reveal" href="#" target="_blank">
+            <div>
+              <div class="social-icon-wrap">
+                <img src="images/instagram.png" alt="Instagram" />
+              </div>
+              <h4 class="serif">Instagram</h4>
+              <p>Team updates, outreach highlights, and event photos.</p>
+            </div>
+            <span>@yourhandle</span>
           </a>
-          <a class="social-item" href="#">
-            <img src="images/youtube.png" alt="YouTube" />
+
+          <a class="social-tile reveal" href="#" target="_blank">
+            <div>
+              <div class="social-icon-wrap">
+                <img src="images/youtube.png" alt="YouTube" />
+              </div>
+              <h4 class="serif">YouTube</h4>
+              <p>Robot reveals, match videos, and team storytelling.</p>
+            </div>
+            <span>Apex Dimension</span>
           </a>
-          <a class="social-item" href="#">
-            <img src="images/tiktok.png" alt="TikTok" />
+
+          <a class="social-tile reveal" href="#" target="_blank">
+            <div>
+              <div class="social-icon-wrap">
+                <img src="images/tiktok.png" alt="TikTok" />
+              </div>
+              <h4 class="serif">TikTok</h4>
+              <p>Fast-paced clips from build season and outreach moments.</p>
+            </div>
+            <span>@yourhandle</span>
           </a>
-          <a class="social-item" href="#">
-            <img src="images/facebook.png" alt="Facebook" />
+
+          <a class="social-tile reveal" href="#" target="_blank">
+            <div>
+              <div class="social-icon-wrap">
+                <img src="images/facebook.png" alt="Facebook" />
+              </div>
+              <h4 class="serif">Facebook</h4>
+              <p>Community posts, family updates, and sponsor visibility.</p>
+            </div>
+            <span>Apex Dimension</span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="about-banner" id="about">
-      <div>
-        <h2>About APEX</h2>
-        <p>Making STEM accessible. Inspiring the next generation.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container split">
-        <div class="card">
-          <h3>Who are we?</h3>
-          <p>
-            We are a team of students who believe STEM should not feel distant or out of reach.
-            Through robotics, we challenge ourselves to grow as engineers, leaders, and problem-solvers.
-            Beyond building robots, we want to bring STEM into our community and help younger students see
-            that they belong in this field too.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Mission Statement</h3>
-          <p>
-            Our mission is to break barriers in STEM and make sure every student, regardless of background,
-            prior access, or financial situation, has the opportunity to learn, create, and innovate through robotics.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="outreach-hero" id="outreach">
-      <h2>Outreach</h2>
-    </section>
-
-    <section class="section">
+    <section class="section" id="sponsor">
       <div class="container">
-        <div class="text-block">
-          <p>
-            We have spent a lot of time trying to share what we love about robotics with others in our community.
-            One of the most meaningful things we have done is bringing our robot to elementary school students at local
-            math and English academies, as well as Brookhaven Elementary School. Seeing their reactions — how excited
-            they get when they first see the robot move or try things themselves — reminds us why we started in the first place.
-          </p>
-          <p>
-            We also connected with FTC and VEX teams at Walter Johnson High School, where we shared our experiences and learned
-            from each other. It was not just about showing our robot, but about building a stronger robotics community and helping
-            others grow alongside us.
-          </p>
-          <p>
-            Outside of competitions, we try to support students more directly by offering low-cost or free tutoring for those who need it.
-            We know not everyone has the same access to resources, so we want to do our part to make STEM feel more reachable and less intimidating.
-          </p>
-        </div>
+        <span class="eyebrow reveal">Sponsor</span>
+        <h2 class="section-title reveal serif">Back the students building what comes next.</h2>
+        <p class="section-subtitle reveal">
+          Sponsor support helps us build competitive robots, grow our outreach, and create real opportunities for students.
+        </p>
 
-        <div class="contact-box">
-          <h3>Contact for Visiting</h3>
-          <p>Email us to schedule a school demo, team visit, collaboration, or outreach event.</p>
-          <a class="btn" href="mailto:yourteamemail@example.com">Email Apex Dimension</a>
+        <div class="sponsor-layout">
+          <div class="sponsor-logo-block glass-panel reveal">
+            <img src="images/argosy-foundation.png" alt="Argosy Foundation logo" />
+          </div>
+
+          <div class="sponsor-card glass-panel reveal">
+            <h3 class="serif">Why sponsorship matters</h3>
+            <p>
+              Your support powers far more than a robot. It helps fund materials, tools, event participation,
+              outreach programs, and student learning experiences that can shape future careers in STEM.
+            </p>
+
+            <div class="sponsor-points">
+              <div class="sponsor-point">Support robot design, programming, fabrication, and competition readiness.</div>
+              <div class="sponsor-point">Expand access to STEM through outreach visits, demos, and student mentoring.</div>
+              <div class="sponsor-point">Help create opportunities for students regardless of background or financial situation.</div>
+            </div>
+
+            <div class="contact-actions" style="margin-top: 24px;">
+              <a class="btn btn-primary" href="mailto:yourteamemail@example.com?subject=Sponsoring%20Apex%20Dimension">
+                Become a Sponsor
+              </a>
+              <a class="btn btn-secondary" href="#contact">Talk With Us</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="sponsor-hero" id="sponsor">
-      <h2>Sponsor</h2>
-    </section>
-
-    <section class="section">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="sponsor-logo-wrap">
-          <img class="sponsor-logo" src="images/argosy-foundation.png" alt="Argosy Foundation" />
-        </div>
-        <div class="sponsor-copy">
-          <p>
-            We are grateful for the support of our sponsors, whose generosity helps us build, compete,
-            and expand access to STEM through outreach. Their support makes it possible for us to create opportunities
-            for students in our community and continue growing as a team.
-          </p>
-          <br />
-          <a class="btn" href="mailto:yourteamemail@example.com?subject=Sponsoring%20Apex%20Dimension">Support Us</a>
+        <span class="eyebrow reveal">Contact</span>
+        <h2 class="section-title reveal serif">Let’s build something meaningful together.</h2>
+        <p class="section-subtitle reveal">
+          Reach out for school visits, collaboration, outreach events, partnership opportunities, or sponsorship.
+        </p>
+
+        <div class="contact-wrap">
+          <div class="contact-card glass-panel reveal">
+            <h3 class="serif">Get in touch</h3>
+            <p>
+              We would love to connect with schools, STEM programs, community organizations,
+              and sponsors who want to help expand opportunities for students.
+            </p>
+
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="mailto:yourteamemail@example.com">Email Apex Dimension</a>
+              <a class="btn btn-secondary" href="#social">See Our Socials</a>
+            </div>
+          </div>
+
+          <div class="social-card glass-panel reveal">
+            <h3 class="serif">Contact info</h3>
+            <p>Replace the placeholders below with your real team information.</p>
+
+            <div class="contact-meta">
+              <div><strong>Email:</strong> yourteamemail@example.com</div>
+              <div><strong>Team:</strong> Apex Dimension • FIRST Chesapeake • Team 11211</div>
+              <div><strong>Focus:</strong> Robotics, outreach, mentorship, STEM accessibility</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -513,21 +1145,83 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="brand">
-        <img src="images/apex-logo.png" alt="Apex Dimension logo" />
-        <div class="brand-text">
-          <span class="brand-name">Apex Dimension</span>
-          <span class="brand-sub">FIRST Chesapeake</span>
-        </div>
+      <div>
+        <strong class="serif">Apex Dimension</strong><br />
+        <span>Making STEM accessible. Inspiring the next generation.</span>
       </div>
 
-      <nav class="nav-links">
-        <a href="#home">Home</a>
+      <div class="footer-links">
         <a href="#about">About</a>
+        <a href="#impact">Impact</a>
         <a href="#outreach">Outreach</a>
         <a href="#sponsor">Sponsor</a>
-      </nav>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </footer>
+
+  <script>
+    const navbar = document.getElementById("navbar");
+    const heroBg = document.getElementById("heroBg");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 24) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+
+      const scrollY = window.scrollY;
+      if (heroBg) {
+        heroBg.style.transform = `scale(1.04) translateY(${scrollY * 0.18}px)`;
+      }
+    });
+
+    const revealEls = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.14
+    });
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+
+    const counters = document.querySelectorAll(".counter");
+
+    const animateCounter = (el) => {
+      const target = +el.getAttribute("data-target");
+      const duration = 1600;
+      const startTime = performance.now();
+
+      const step = (currentTime) => {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(eased * target);
+        el.textContent = value + (target >= 10 ? "+" : "");
+        if (progress < 1) requestAnimationFrame(step);
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    counters.forEach((counter) => counterObserver.observe(counter));
+  </script>
 </body>
 </html>
