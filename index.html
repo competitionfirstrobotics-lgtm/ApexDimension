@@ -9,69 +9,60 @@ import { Input } from "@/components/ui/input";
 const products = [
   {
     id: 1,
-    name: "Apex Team Tee",
-    price: 28,
-    category: "Apparel",
+    name: "2026 Team Jersey",
+    price: 0,
+    category: "Coming Soon",
     image:
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80",
-    description: "Soft competition-day shirt with clean team branding.",
+    description: "Official Apex Dimension uniform drop coming soon.",
   },
   {
     id: 2,
-    name: "Pit Crew Hoodie",
-    price: 55,
-    category: "Apparel",
+    name: "Pit Hoodie",
+    price: 0,
+    category: "Coming Soon",
     image:
       "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1200&q=80",
-    description: "Heavyweight hoodie for late nights in the shop.",
+    description: "Clean team hoodie in the Apex color palette.",
   },
   {
     id: 3,
-    name: "Driver Station Cap",
-    price: 24,
-    category: "Accessories",
+    name: "Driver Cap",
+    price: 0,
+    category: "Coming Soon",
     image:
       "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=1200&q=80",
-    description: "Minimal embroidered cap with Apex badge detail.",
-  },
-  {
-    id: 4,
-    name: "Sponsor Edition Jersey",
-    price: 62,
-    category: "Premium",
-    image:
-      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80",
-    description: "Competition-style jersey with space for sponsor marks.",
+    description: "Minimal cap for events, travel, and outreach.",
   },
 ];
 
 const statItems = [
   { label: "Team", value: "11211" },
   { label: "Identity", value: "Apex Dimension" },
-  { label: "Focus", value: "Build · Code · Compete" },
-  { label: "Style", value: "Fast, clean, futuristic" },
+  { label: "Palette", value: "White + Light Blue" },
+  { label: "Motion", value: "Anime energy" },
 ];
 
 const featureCards = [
   {
     icon: Cpu,
     title: "Engineering",
-    text: "From drivetrain to autonomous routines, we design for performance under pressure.",
+    text: "Fast, refined, competition-focused robot design with a polished team identity.",
   },
   {
     icon: Camera,
-    title: "Media",
-    text: "We document every season with cinematic visuals, recaps, and team storytelling.",
+    title: "Anime Motion",
+    text: "Layered glow, floating movement, streaks, and cinematic transitions inspired by anime-style motion.",
   },
   {
     icon: Wrench,
     title: "Fabrication",
-    text: "Precision manufacturing, iterative prototyping, and fast execution in the shop.",
+    text: "Precision manufacturing, rapid iteration, and clean execution in the shop.",
   },
   {
     icon: Trophy,
     title: "Competition",
-    text: "We show up prepared, strategic, and focused on continual improvement.",
+    text: "A premium presentation for sponsors, judges, recruits, and supporters.",
   },
 ];
 
@@ -122,45 +113,45 @@ export default function ApexDimensionSite() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_35%),radial-gradient(circle_at_80%_20%,_rgba(168,85,247,0.18),_transparent_25%),linear-gradient(to_bottom,_#050816,_#09090b)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(147,197,253,0.24),_transparent_36%),radial-gradient(circle_at_80%_20%,_rgba(244,114,182,0.18),_transparent_26%),radial-gradient(circle_at_20%_70%,_rgba(191,219,254,0.18),_transparent_24%),linear-gradient(to_bottom,_#eef6ff,_#dbeafe_32%,_#f8fbff_68%,_#eff6ff)]" />
         <motion.div
           animate={{ y: [0, -20, 0], opacity: [0.2, 0.35, 0.2] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-[12%] top-24 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"
+          className="absolute left-[12%] top-24 h-72 w-72 rounded-full bg-sky-300/30 blur-3xl"
         />
         <motion.div
           animate={{ y: [0, 18, 0], opacity: [0.15, 0.28, 0.15] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-[8%] top-[22rem] h-80 w-80 rounded-full bg-fuchsia-500/10 blur-3xl"
+          className="absolute right-[8%] top-[22rem] h-80 w-80 rounded-full bg-pink-300/25 blur-3xl"
         />
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-neutral-950/70 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-sky-200/60 bg-white/70 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/15 bg-white/5 font-black tracking-widest">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-sky-200 bg-white font-black tracking-widest text-sky-700 shadow-sm">
               AD
             </div>
             <div>
-              <p className="text-sm text-white/60">FRC Team 11211</p>
-              <h1 className="text-base font-semibold">Apex Dimension</h1>
+              <p className="text-sm text-slate-500">FRC Team 11211</p>
+              <h1 className="text-base font-semibold text-slate-900">Apex Dimension</h1>
             </div>
           </div>
 
           <nav className="hidden items-center gap-6 md:flex">
-            <a href="#about" className="text-sm text-white/70 transition hover:text-white">About</a>
-            <a href="#robotics" className="text-sm text-white/70 transition hover:text-white">Program</a>
-            <a href="#shop" className="text-sm text-white/70 transition hover:text-white">Shop</a>
-            <a href="#contact" className="text-sm text-white/70 transition hover:text-white">Contact</a>
+            <a href="#about" className="text-sm text-slate-600 transition hover:text-sky-700">About</a>
+            <a href="#robotics" className="text-sm text-slate-600 transition hover:text-sky-700">Program</a>
+            <a href="#shop" className="text-sm text-slate-600 transition hover:text-sky-700">Shop</a>
+            <a href="#contact" className="text-sm text-slate-600 transition hover:text-sky-700">Contact</a>
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
-            <Button variant="outline" className="rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10">
+            <Button variant="outline" className="rounded-2xl border-sky-200 bg-white text-sky-700 hover:bg-sky-50">
               Sponsor Us
             </Button>
-            <Button className="rounded-2xl bg-white text-black hover:bg-white/90">
+            <Button className="rounded-2xl bg-sky-600 text-white hover:bg-sky-700">
               <ShoppingCart className="mr-2 h-4 w-4" />
               Cart ({cartCount})
             </Button>
@@ -168,7 +159,7 @@ export default function ApexDimensionSite() {
 
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-sky-200 bg-white md:hidden text-sky-700"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -189,41 +180,41 @@ export default function ApexDimensionSite() {
       <main>
         <section className="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
           <div>
-            <Badge className="mb-5 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1 text-cyan-200">
+            <Badge className="mb-5 rounded-full border border-sky-200 bg-white/80 px-4 py-1 text-sky-700 shadow-sm">
               <Sparkles className="mr-2 h-3.5 w-3.5" />
-              Inspired by cinematic, immersive team storytelling
+              White + light blue + anime-style motion
             </Badge>
 
             <motion.h2
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="max-w-3xl text-5xl font-black leading-none tracking-tight md:text-7xl"
+              className="max-w-3xl text-5xl font-black leading-none tracking-tight text-slate-900 md:text-7xl"
             >
               Build the future.
-              <span className="block bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-sky-500 via-blue-500 to-pink-400 bg-clip-text text-transparent">
                 Compete at full speed.
               </span>
             </motion.h2>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              Apex Dimension 11211 is a student-led FIRST Robotics Competition team creating high-performance robots, bold branding, and a competitive culture around engineering, teamwork, and innovation.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+              Apex Dimension 11211 is a student-led FIRST Robotics Competition team with a clean white and light-blue identity, premium visual branding, and anime-inspired motion across the site.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Button className="rounded-2xl bg-white px-6 text-black hover:bg-white/90">
                 Explore the Team <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" className="rounded-2xl border-white/15 bg-white/5 px-6 text-white hover:bg-white/10">
-                View the Shop
+              <Button variant="outline" className="rounded-2xl border-sky-200 bg-white px-6 text-sky-700 hover:bg-sky-50">
+                Apparel Coming Soon
               </Button>
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
               {statItems.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/45">{item.label}</p>
-                  <p className="mt-2 text-sm font-semibold text-white/90">{item.value}</p>
+                <div key={item.label} className="rounded-2xl border border-sky-100 bg-white/80 p-4 shadow-sm backdrop-blur">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{item.label}</p>
+                  <p className="mt-2 text-sm font-semibold text-slate-800">{item.value}</p>
                 </div>
               ))}
             </div>
@@ -235,16 +226,20 @@ export default function ApexDimensionSite() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="relative"
           >
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 via-blue-500/10 to-fuchsia-500/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl backdrop-blur-xl">
+            <motion.div
+              animate={{ rotate: [0, 2, -2, 0], scale: [1, 1.02, 1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-sky-300/35 via-blue-200/25 to-pink-200/35 blur-2xl"
+            />
+            <div className="relative overflow-hidden rounded-[2rem] border border-sky-100 bg-white/80 shadow-2xl backdrop-blur-xl">
               <img
-                src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?auto=format&fit=crop&w=1400&q=80"
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
                 alt="Robotics team"
                 className="h-[520px] w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/75 via-slate-900/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <p className="text-sm uppercase tracking-[0.3em] text-cyan-200/80">Competition energy</p>
+                <p className="text-sm uppercase tracking-[0.3em] text-sky-200">Anime motion energy</p>
                 <h3 className="mt-2 text-2xl font-bold md:text-4xl">A modern identity for a high-performance team.</h3>
                 <p className="mt-3 max-w-xl text-sm leading-7 text-white/75 md:text-base">
                   This homepage is designed to feel immersive and premium, while still making it easy for sponsors, students, and families to learn about the team and buy apparel.
@@ -347,7 +342,7 @@ export default function ApexDimensionSite() {
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-xs uppercase tracking-[0.2em] text-white/45">{product.category}</p>
+                        <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{product.category}</p>
                         <h4 className="mt-2 text-xl font-semibold">{product.name}</h4>
                       </div>
                       <p className="text-lg font-bold">{formatCurrency(product.price)}</p>
@@ -475,3 +470,4 @@ export default function ApexDimensionSite() {
     </div>
   );
 }
+
